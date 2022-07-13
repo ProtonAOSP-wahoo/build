@@ -4645,14 +4645,11 @@ droidcore-unbundled: $(INSTALLED_MISC_INFO_TARGET)
 # This zip can be used to create an OTA package or filesystem image
 # as a post-build step.
 #
-name := $(TARGET_PRODUCT)
-ifeq ($(TARGET_BUILD_TYPE),debug)
-  name := $(name)_debug
-endif
-name := $(name)-target_files-$(FILE_NAME_TAG)
+name := $(TARGET_PRODUCT)-target_files-$(FILE_NAME_TAG)
 
 intermediates := $(call intermediates-dir-for,PACKAGING,target_files)
 BUILT_TARGET_FILES_PACKAGE := $(intermediates)/$(name).zip
+SIGNED_TARGET_FILES_PACKAGE := $(intermediates)/signed-$(name).zip
 $(BUILT_TARGET_FILES_PACKAGE): intermediates := $(intermediates)
 $(BUILT_TARGET_FILES_PACKAGE): \
 	    zip_root := $(intermediates)/$(name)
